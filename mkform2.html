@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>お問い合わせフォーム（JS版）</title>
+<link rel="stylesheet" href="mkform2.css">
+<script type="text/javascript">
+
+var errormessage = ["お名前が入力されていません。", 
+    "メールアドレスが入力されていません。", "お問い合わせ内容が入力されていません。"];
+
+function check(){
+    var elem = document.fm.elements;
+    var str = "";
+
+    for(var i = 0; i<3 ; i++){
+        if(elem[i].value == ""){
+            str += errormessage[i] + "\n";
+        }
+    }
+
+    if(str != ""){
+    alert(str);
+    return false;
+    }
+
+}
+
+function btnCheck(){
+    if (document.getElementById("btn").disabled === true){
+		// disabled属性を削除
+		document.getElementById("btn").removeAttribute("disabled");
+		document.getElementById("btn").style.color = "black";
+	}else{
+		// disabled属性を設定
+		document.getElementById("btn").setAttribute("disabled", true);
+		document.getElementById("btn").style.color = "White";
+	}
+}
+
+
+</script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>お問い合わせフォーム</h1>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+        <form name="fm" action="finish.html" onsubmit="return check();">
+            <div class="item">
+                <p class="title">お名前（必須）</p>
+                <input type="text" name="name">
+            </div>
+            <div class="item">
+                <p class="title">メールアドレス（必須）</p>
+                <input type="email" name="email">
+            </div>
+            <div class="item">
+                <p class="title">内容（必須）</p>
+                <textarea name="inquiry"></textarea>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" id="checkbox" onclick="btnCheck();">
+                <p>プライバシーポリシーに同意する</p>
+            </div>
+            <div class="submit">
+                <button type="submit" id="btn" disabled>送信</button>
+            </div>
+        </form>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+</html>
